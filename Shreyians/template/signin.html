@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Signin</title>
+    <link rel="stylesheet" href="{% static 'signin.css' %}">
+</head>
+<body>
+
+<div class="auth-wrapper">
+    <div class="auth-card">
+
+        <!-- TOGGLE BUTTONS -->
+        <form method="POST" class="toggle-buttons">
+            {% csrf_token %}
+            <button name="action" value="show_signin"
+                class="{% if show == 'signin' %}active{% endif %}">
+                Signin
+            </button>
+
+            <button name="action" value="show_create"
+                class="{% if show == 'create' %}active{% endif %}">
+                Create New Account
+            </button>
+        </form>
+
+        {% if info %}
+        <p class="error">{{ info }}</p>
+        {% endif %}
+
+        <!-- SIGNIN FORM -->
+        {% if show == 'signin' %}
+        <h2>Signin</h2>
+        <form method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="action" value="signin">
+
+            <input type="text" name="username" placeholder="Username" required>
+            <input type="password" name="password" placeholder="Password" required>
+
+            <button type="submit" class="submit-btn">Signin</button>
+        </form>
+        {% endif %}
+
+        <!-- CREATE ACCOUNT FORM -->
+        {% if show == 'create' %}
+        <h2>Create New Account</h2>
+        <form method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="action" value="create">
+
+            <input type="text" name="username" placeholder="Username" required>
+            <input type="password" name="password1" placeholder="Password" required>
+            <input type="password" name="password2" placeholder="Confirm Password" required>
+
+            <button type="submit" class="submit-btn">Create New Account</button>
+        </form>
+        {% endif %}
+
+    </div>
+</div>
+
+</body>
+</html>

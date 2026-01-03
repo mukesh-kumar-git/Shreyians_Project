@@ -1,0 +1,107 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Sheryians Coding School</title>
+<link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+<div class="navbar">
+    <div class="brand">
+        <img src="./static\Images\logo.png" alt="Sheryians Logo">
+        <div class="logo-text">
+            sheryians <br> Coding School
+        </div>
+    </div>
+
+    <div class="nav-links">
+        <a href="{% url 'home' %}">Home</a>
+        <a href="{% url 'course' %}">Courses</a>
+        <a href="#">Bootcamps</a>
+        <a href="{% url 'contact' %}">Contact</a>
+        <a href="{% url 'login_view' %}" class="signup-btn">Signup</a>
+    </div>
+</div>
+
+<section class="hero">
+    <h1>
+        We only <span>teach</span><br>
+        what we are really<br>
+        <i>really</i> good at.
+    </h1>
+
+    <div class="cta">Check Courses-Make an Impact</div>
+
+    <div class="stats">
+        <div class="stat"><h3>250k+</h3><p>Students taught</p></div>
+        <div class="stat"><h3>20+</h3><p>Instructors</p></div>
+        <div class="stat"><h3>617k+</h3><p>YouTube Subs</p></div>
+    </div>
+</section>
+
+
+<div class="center-text">
+    <h2>
+        we do whatever it takes to help you <br>
+        <span>understand the concept</span>
+    </h2>
+
+    <img src="./static\Images\yt.png" alt="Learning Preview">
+    <div class="btn-center">
+    <button class="explore-free-btn">Explore free learning</button>
+    </div>
+</div>
+<div class="section-title">Courses Offered.</div>
+
+<section class="courses">
+    <div class="card"><img src="./static\Images\cart1.jpeg"><h4>Data Science and Analytics</h4><p class="lang">Hindi | English</p><p class="offer">Limited Time Discount</p><div class="price">₹6999 <del>₹9999</del></div><button>View Details</button></div>
+    <div class="card"><img src="./static\Images\cart2.jpeg"><h4>20 Job Ready AI Cohort</h4><p class="lang">Hindi + DSA + Aptitude</p><p class="offer">Early Bird Discount</p><div class="price">₹5999 <del>₹11999</del></div><button>View Details</button></div>
+    <div class="card"><img src="./static\Images\cart3.jpeg"><h4>DSA Domination Cohort</h4><p class="lang">Hindi | Live Batch</p><p class="offer">Limited Time Discount</p><div class="price">₹6600 <del>₹12999</del></div><button>View Details</button></div>
+    <div class="card"><img src="./static\Images\cart4.jpeg"><h4>Job Ready AI Cohort</h4><p class="lang">Hindi</p><p class="offer">Limited Time Discount</p><div class="price">₹5999 <del>₹9999</del></div><button>View Details</button></div>
+    <div class="card"><img src="./static\Images\cart5.jpg"><h4>Three.js Domination</h4><p class="lang">Hindi</p><p class="offer">Limited Time Discount</p><div class="price">₹2499 <del>₹4999</del></div><button>View Details</button></div>
+    <div class="card"><img src="./static\Images\cart6.jpeg"><h4>Java & DSA Domination</h4><p class="lang">Hindi</p><p class="offer">Limited Time Discount</p><div class="price">₹4999 <del>₹9999</del></div><button>View Details</button></div>
+    <div class="card"><img src="./static\Images\cart7.jpeg"><h4>Aptitude & Reasoning</h4><p class="lang">Campus Placements</p><p class="offer">Limited Time Discount</p><div class="price">₹1100 <del>₹1900</del></div><button>View Details</button></div>
+    <div class="card"><img src="./static\Images\cart8.jpg"><h4>Frontend Domination</h4><p class="lang">HTML | CSS | JS</p><p class="offer">Limited Time Discount</p><div class="price">₹3999 <del>₹6999</del></div><button>View Details</button></div>
+</section>
+
+<section class="companies">
+    <h2>Top <span>companies</span> our students <br>working with</h2>
+    <div class="logos">
+        <img src="./static\Images\companies.png">
+    </div>
+</section>
+
+<div class="explore-wrap">
+    <button>Explore Courses</button>
+</div>
+
+<footer>
+    <div class="footer-wrap">
+        <div>
+            <h5>COMPANY</h5>
+            <p>About Us</p>
+            <p>Privacy Policy</p>
+            <p>Terms & Conditions</p>
+        </div>
+        <div>
+            <h5>COMMUNITY</h5>
+            <p>Discord</p>
+            <p>Jobs</p>
+        </div>
+        <div>
+            <h5>GET IN TOUCH</h5>
+            <p>support@sheryians.com</p>
+            <p>+91 98765 43210</p>
+        </div>
+    </div>
+
+    <div class="copy">
+        © 2025 Sheryians Pvt. Ltd. All Rights Reserved.
+    </div>
+</footer>
+
+<script src="./app.js"></script>
+
+</body>
+</html>

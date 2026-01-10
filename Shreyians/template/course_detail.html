@@ -1,0 +1,296 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>{{ course.title }}</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+/* ================= GLOBAL ================= */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: Inter, system-ui, sans-serif;
+}
+
+:root{
+    --bg:#0c0c0c;
+    --card:#111;
+    --border:#1f1f1f;
+    --text:#e5e7eb;
+    --muted:#9ca3af;
+    --accent:#24cfa6;
+}
+
+body{
+    background:var(--bg);
+    color:var(--text);
+}
+
+/* ================= NAVBAR ================= */
+.navbar{
+    height:80px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 6rem;
+    border-bottom:1px solid var(--border);
+}
+
+.logo span{
+    color:var(--accent);
+    font-size:22px;
+    font-weight:600;
+}
+
+.nav-links{
+    list-style:none;
+    display:flex;
+    gap:40px;
+}
+
+.nav-links a{
+    text-decoration:none;
+    color:var(--text);
+    font-size:15px;
+}
+
+.nav-links a:hover{
+    color:var(--accent);
+}
+
+.auth-buttons{
+    display:flex;
+    align-items:center;
+    gap:14px;
+}
+
+.auth-buttons a{
+    text-decoration:none;
+    padding:10px 22px;
+    border-radius:999px;
+    font-size:14px;
+    font-weight:600;
+}
+
+.login{
+    color:var(--accent);
+    border:1px solid var(--accent);
+}
+
+.signup{
+    background:var(--accent);
+    color:#000;
+}
+
+/* ================= COURSE HERO ================= */
+.course-hero{
+    width:90%;
+    margin:5rem auto;
+    display:grid;
+    grid-template-columns:1.2fr 1fr;
+    gap:3rem;
+}
+
+.course-hero img{
+    width:100%;
+    height:320px;
+    object-fit:cover;
+    border-radius:18px;
+}
+
+.course-info h1{
+    font-size:2.8rem;
+    font-weight:400;
+    margin-bottom:1rem;
+}
+
+.course-info p{
+    color:var(--muted);
+    font-size:15px;
+    line-height:1.6;
+}
+
+/* ================= PRICE ================= */
+.price{
+    margin:1.5rem 0;
+    font-size:18px;
+}
+
+.price del{
+    color:#6b7280;
+    margin-right:10px;
+}
+
+.price strong{
+    color:var(--accent);
+    font-weight:600;
+}
+
+.badge{
+    background:rgba(36,207,166,.15);
+    color:var(--accent);
+    padding:4px 12px;
+    border-radius:999px;
+    font-size:12px;
+    margin-left:8px;
+}
+
+/* ================= META ================= */
+.meta{
+    margin:1.5rem 0;
+    display:flex;
+    flex-wrap:wrap;
+    gap:16px;
+    font-size:14px;
+    color:var(--muted);
+}
+
+/* ================= BUTTONS ================= */
+.actions{
+    margin-top:2rem;
+    display:flex;
+    gap:16px;
+}
+
+.actions a{
+    padding:14px 36px;
+    border-radius:999px;
+    font-weight:600;
+    text-decoration:none;
+}
+
+.enroll{
+    background:var(--accent);
+    color:#000;
+}
+
+.cart{
+    border:1px solid var(--accent);
+    color:var(--accent);
+}
+
+/* ================= CONTENT ================= */
+.content{
+    width:90%;
+    margin:4rem auto;
+    display:grid;
+    grid-template-columns:2fr 1fr;
+    gap:3rem;
+}
+
+.section h2{
+    font-size:1.6rem;
+    font-weight:400;
+    margin-bottom:1rem;
+}
+
+.section p{
+    font-size:15px;
+    color:var(--muted);
+    line-height:1.7;
+}
+
+/* ================= RESPONSIVE ================= */
+@media(max-width:900px){
+    .course-hero{
+        grid-template-columns:1fr;
+    }
+    .content{
+        grid-template-columns:1fr;
+    }
+    .navbar{
+        padding:0 1.5rem;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ================= NAV ================= -->
+<nav class="navbar">
+    <div class="logo">
+        <span>Sheryians</span>
+    </div>
+
+    <ul class="nav-links">
+        <li><a href="{% url 'home' %}">Home</a></li>
+        <li><a href="{% url 'course_list' %}">Courses</a></li>
+        <li><a href="{% url 'cart_page' %}">Cart</a></li>
+    </ul>
+
+    <div class="auth-buttons">
+        {% if request.user.is_authenticated %}
+            <span style="font-size:14px;">Hi, {{ request.user.username }}</span>
+            <a href="{% url 'signout' %}" class="login">Logout</a>
+        {% else %}
+            <a href="{% url 'signin' %}" class="login">Login</a>
+            <a href="{% url 'signup' %}" class="signup">Sign Up</a>
+        {% endif %}
+    </div>
+</nav>
+
+<!-- ================= COURSE HERO ================= -->
+<section class="course-hero">
+
+    {% if course.image %}
+        <img src="{{ course.image.url }}" alt="{{ course.title }}">
+    {% else %}
+        <img src="{% static 'images/no-image.png' %}">
+    {% endif %}
+
+    <div class="course-info">
+        <h1>{{ course.title }}</h1>
+
+        <p>{{ course.short_description }}</p>
+
+        <div class="price">
+            {% if course.price_original %}
+                <del>₹{{ course.price_original }}</del>
+            {% endif %}
+            <strong>₹{{ course.price_discounted }}</strong>
+
+            {% if course.discount_percentage %}
+                <span class="badge">{{ course.discount_percentage }}% OFF</span>
+            {% endif %}
+        </div>
+
+        <div class="meta">
+            {% if course.language %} <span>Language: {{ course.language }}</span> {% endif %}
+            {% if course.course_validity %} <span>Validity: {{ course.course_validity }}</span> {% endif %}
+            {% if course.is_live %}
+                <span>🔴 Live Course</span>
+            {% else %}
+                <span>🎥 Recorded Course</span>
+            {% endif %}
+        </div>
+
+        <div class="actions">
+            <a href="{% url 'confirm_order' %}" class="enroll">Enroll Now</a>
+            <a href="{% url 'add_to_cart' course.id %}" class="cart">Add to Cart</a>
+        </div>
+    </div>
+</section>
+
+<!-- ================= CONTENT ================= -->
+<section class="content">
+
+    <div class="section">
+        <h2>Course Description</h2>
+        <p>{{ course.full_description|linebreaks }}</p>
+    </div>
+
+    {% if course.schedule %}
+    <div class="section">
+        <h2>Schedule</h2>
+        <p>{{ course.schedule }}</p>
+    </div>
+    {% endif %}
+
+</section>
+
+</body>
+</html>

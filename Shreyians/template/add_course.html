@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Add Course</title>
+
+<style>
+    body{
+        margin:0;
+        min-height:100vh;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        background: radial-gradient(circle at top, #1f2933, #0f172a);
+        font-family: "Segoe UI", sans-serif;
+    }
+
+    .glass-box{
+        width: 480px;
+        padding: 30px;
+        border-radius: 16px;
+        background: rgba(255,255,255,0.08);
+        backdrop-filter: blur(14px);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        color: #fff;
+    }
+
+    h2{
+        text-align:center;
+        margin-bottom:25px;
+        letter-spacing:1px;
+    }
+
+    .field{
+        margin-bottom:14px;
+    }
+
+    label{
+        font-size:13px;
+        opacity:0.8;
+    }
+
+    input, textarea{
+        width:100%;
+        background: transparent;
+        border:1px solid rgba(255,255,255,0.2);
+        border-radius:8px;
+        padding:10px;
+        margin-top:5px;
+        color:#fff;
+        outline:none;
+        font-size:14px;
+    }
+
+    textarea{
+        resize:none;
+        height:70px;
+    }
+
+    input::placeholder,
+    textarea::placeholder{
+        color:#9ca3af;
+    }
+
+    input:focus,
+    textarea:focus{
+        border-color:#38bdf8;
+        box-shadow:0 0 0 2px rgba(56,189,248,0.3);
+    }
+
+    .row{
+        display:flex;
+        gap:10px;
+    }
+
+    .row .field{
+        flex:1;
+    }
+
+    .checkbox{
+        display:flex;
+        align-items:center;
+        gap:8px;
+        margin-top:10px;
+        font-size:14px;
+    }
+
+    button{
+        width:100%;
+        margin-top:20px;
+        padding:12px;
+        border:none;
+        border-radius:10px;
+        background: linear-gradient(135deg,#38bdf8,#6366f1);
+        color:#fff;
+        font-size:16px;
+        font-weight:600;
+        cursor:pointer;
+        transition:0.3s;
+    }
+
+    button:hover{
+        transform: translateY(-2px);
+        box-shadow:0 10px 25px rgba(56,189,248,0.4);
+    }
+</style>
+</head>8
+
+<body>
+
+<div class="glass-box">
+    <h2>Add Course</h2>
+
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <div class="field">
+            <label>Course Title</label>
+            <input type="text" name="title" placeholder="Python Full Stack">
+        </div>
+
+        <div class="field">
+            <label>Short Description</label>
+            <textarea name="short_description" placeholder="One line overview"></textarea>
+        </div>
+
+        <div class="field">
+            <label>Full Description</label>
+            <textarea name="full_description" placeholder="Detailed course content"></textarea>
+        </div>
+
+        <div class="row">
+            <div class="field">
+                <label>Original Price</label>
+                <input type="number" name="price_original">
+            </div>
+
+            <div class="field">
+                <label>Discounted Price</label>
+                <input type="number" name="price_discounted">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="field">
+                <label>Discount %</label>
+                <input type="number" name="discount_percentage">
+            </div>
+
+            <div class="field">
+                <label>Language</label>
+                <input type="text" name="language">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="field">
+                <label>Schedule</label>
+                <input type="text" name="schedule">
+            </div>
+
+            <div class="field">
+                <label>Validity</label>
+                <input type="text" name="course_validity">
+            </div>
+        </div>
+
+        <div class="checkbox">
+            <input type="checkbox" name="is_live">
+            <span>Live Course</span>
+        </div>
+
+        <div class="field">
+            <label>Course Image</label>
+            <input type="file" name="image">
+        </div>
+
+        <button type="submit">Create Course</button>
+    </form>
+</div>
+
+</body>
+</html>

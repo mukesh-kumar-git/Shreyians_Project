@@ -1,0 +1,347 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Sheryians Style</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: Inter, system-ui, sans-serif;
+}
+:root{
+    --bg:#0c0c0c;
+    --card:#111;
+    --border:#1f1f1f;
+    --text:#e5e7eb;
+    --muted:#9ca3af;
+    --accent:#24cfa6;
+}
+body{background:var(--bg);color:var(--text);}
+
+/* NAVBAR */
+nav{
+    height:80px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 6rem;
+    border-bottom:1px solid var(--border);
+}
+.logo{font-size:22px;font-weight:600;color:var(--accent);}
+.nav-links{list-style:none;display:flex;gap:40px;}
+.nav-links a{text-decoration:none;color:var(--text);font-size:15px;}
+.nav-links a:hover{color:var(--accent);}
+.auth a{
+    text-decoration:none;
+    padding:10px 22px;
+    border-radius:999px;
+    font-size:14px;
+    font-weight:600;
+}
+.login{color:var(--accent);border:1px solid var(--accent);}
+.signup{background:var(--accent);color:#000;}
+
+/* HERO */
+.hero{
+    margin-top:8rem;
+    text-align:center;
+    position:relative;
+}
+.hero h1{
+    font-size:5.4rem;
+    font-weight:300;
+    line-height:.9;
+}
+.hero span{color:var(--accent);}
+.hero .italic{font-style:italic;}
+.hero p{
+    position:absolute;
+    right:8%;
+    bottom:-20%;
+    max-width:260px;
+    font-size:14px;
+    color:var(--muted);
+    text-align:left;
+}
+.hero .btn{
+    display:inline-block;
+    margin-top:3rem;
+    padding:14px 36px;
+    background:var(--accent);
+    color:#000;
+    border-radius:999px;
+    font-weight:600;
+    text-decoration:none;
+}
+
+/* STATS */
+.stats{
+    margin-top:6rem;
+    display:flex;
+    justify-content:center;
+    gap:5rem;
+}
+.stat{text-align:center;}
+.stat h2{font-size:28px;}
+.stat p{font-size:14px;color:var(--muted);}
+
+/* YOUTUBE SECTION */
+.youtube{
+    margin:8rem auto;
+    text-align:center;
+}
+.youtube h2{
+    font-size:2.6rem;
+    font-weight:400;
+}
+.youtube span{
+    color:var(--accent);
+}
+.video-box{
+    max-width:900px;
+    margin:3rem auto;
+    border-radius:18px;
+    overflow:hidden;
+    border:1px solid var(--border);
+    position:relative;
+}
+
+.video-thumb{
+    display:block;
+    position:relative;
+}
+
+.video-thumb img{
+    width:100%;
+    display:block;
+}
+.youtube .btn{
+    display:inline-block;
+    margin-top:2.5rem;
+    padding:14px 36px;
+    background:var(--accent);
+    color:#000;
+    border-radius:999px;
+    font-weight:600;
+    text-decoration:none;
+}
+
+/* COURSES */
+.courses{
+    width:90%;
+    margin:9rem auto;
+}
+.courses h2{
+    font-size:2.6rem;
+    margin-bottom:3rem;
+}
+.course-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:24px;
+}
+.course-card{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:18px;
+    padding:16px;
+    transition:.3s;
+}
+.course-card:hover{
+    transform:translateY(-8px);
+    border-color:var(--accent);
+}
+.course-card img{
+    width:100%;
+    height:170px;
+    object-fit:cover;
+    border-radius:12px;
+}
+.course-card h3{
+    margin-top:14px;
+    font-size:18px;
+}
+.course-card p{
+    font-size:14px;
+    color:var(--muted);
+    margin:8px 0;
+}
+.price{
+    color:var(--accent);
+    font-weight:600;
+    font-size:16px;
+}
+.view-btn{
+    display:inline-block;
+    margin-top:10px;
+    color:var(--accent);
+    font-size:14px;
+    text-decoration:none;
+}
+
+/* COMPANIES */
+.companies{
+    margin:8rem auto;
+    text-align:center;
+}
+.companies h2{font-size:2.6rem;}
+.companies img{
+    width:70%;
+    margin-top:3rem;
+}
+
+/* FOOTER */
+footer{
+    border-top:1px solid var(--border);
+    padding:4rem 6rem 2rem;
+}
+.footer-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:3rem;
+}
+footer h3{color:var(--accent);margin-bottom:14px;}
+footer a,footer p{
+    display:block;
+    color:var(--muted);
+    font-size:14px;
+    margin-bottom:10px;
+    text-decoration:none;
+}
+.copy{text-align:center;margin-top:3rem;font-size:13px;color:var(--muted);}
+</style>
+</head>
+
+<body>
+
+<!-- NAV -->
+<nav>
+    <div class="logo">Sheryians</div>
+
+    <ul class="nav-links">
+        <li><a href="{% url 'home' %}">Home</a></li>
+        <li><a href="{% url 'course_list' %}">Courses</a></li>
+        <li><a href="{% url 'cart_page' %}">Cart</a></li>
+    </ul>
+
+    <div class="auth">
+        {% if request.user.is_authenticated %}
+            <span style="font-size:14px;">Hello, {{ request.user.username }}</span>
+            <a href="{% url 'signout' %}" class="login">Logout</a>
+        {% else %}
+            <a href="{% url 'signin' %}" class="login">Login</a>
+            <a href="{% url 'signup' %}" class="signup">Sign Up</a>
+        {% endif %}
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+    <h1>
+        We only <span>teach</span><br>
+        what we are really<br>
+        really <span class="italic">good</span> at.
+    </h1>
+
+    <a href="{% url 'course_list' %}" class="btn">Check Courses – Make an Impact</a>
+
+    <p>
+        Get ready to <span>accelerate your career</span> with customized courses
+    </p>
+</section>
+
+<!-- STATS -->
+<section class="stats">
+    <div class="stat"><h2>250k+</h2><p>Students taught</p></div>
+    <div class="stat"><h2>20+</h2><p>Instructors</p></div>
+    <div class="stat"><h2>607k+</h2><p>YouTube Subs</p></div>
+</section>
+
+<!-- YOUTUBE -->
+<section class="youtube">
+    <h2>
+        we do whatever it takes to help you<br>
+        <span>understand the concepts.</span>
+    </h2>
+
+    <div class="video-box">
+    <a href="https://www.youtube.com/watch?v=60SRAWmMXyc"
+       target="_blank"
+       class="video-thumb">
+
+        <img
+            src="../media/course_images/yt.png"
+            alt="Video thumbnail">
+    </a>
+</div>
+    <a href="https://www.youtube.com/embed/60SRAWmMXyc?autoplay=1&mute=1" target="_blank" class="btn">
+        Explore free learning
+    </a>
+</section>
+
+<!-- COURSES -->
+<section class="courses">
+    <h2>All Courses</h2>
+
+    <div class="course-grid">
+        {% for course in courses %}
+        <div class="course-card">
+            {% if course.image %}
+                <img src="{{ course.image.url }}" alt="{{ course.title }}">
+            {% endif %}
+
+            <h3>{{ course.title }}</h3>
+            <p>{{ course.short_description }}</p>
+
+            <div class="price">
+                {% if course.price_discounted %}
+                    ₹{{ course.price_discounted }}
+                {% else %}
+                    ₹{{ course.price_original }}
+                {% endif %}
+            </div>
+
+            <a href="{% url 'course_detail' course.slug %}" class="view-btn">
+                View Course →
+            </a>
+        </div>
+        {% empty %}
+            <p>No courses available</p>
+        {% endfor %}
+    </div>
+</section>
+
+<!-- COMPANIES -->
+<section class="companies">
+    <h2>Top <span style="color:var(--accent)">companies</span> our students work with</h2>
+    <img src="https://ik.imagekit.io/sheryians/companies-logo/companies_CcvVE6pUo.png">
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-grid">
+        <div>
+            <h3>Company</h3>
+            <a href="#">About</a>
+            <a href="#">Support</a>
+        </div>
+        <div>
+            <h3>Community</h3>
+            <a href="#">Discord</a>
+        </div>
+        <div>
+            <h3>Contact</h3>
+            <p>abc@sheryians.com</p>
+            <p>Bhopal, India</p>
+        </div>
+    </div>
+    <div class="copy">© 2026 Sheryians Pvt. Ltd.</div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,221 @@
+<!-- {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Dashboard</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+/* ================= GLOBAL ================= */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: Inter, system-ui, sans-serif;
+}
+
+:root{
+    --bg:#0c0c0c;
+    --card:#111;
+    --border:#1f1f1f;
+    --text:#e5e7eb;
+    --muted:#9ca3af;
+    --accent:#24cfa6;
+}
+
+body{
+    background:var(--bg);
+    color:var(--text);
+}
+
+/* ================= NAVBAR ================= */
+.navbar{
+    height:80px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 6rem;
+    border-bottom:1px solid var(--border);
+}
+
+.logo span{
+    color:var(--accent);
+    font-size:22px;
+    font-weight:600;
+}
+
+.nav-links{
+    list-style:none;
+    display:flex;
+    gap:40px;
+}
+
+.nav-links a{
+    text-decoration:none;
+    color:var(--text);
+    font-size:15px;
+}
+
+.nav-links a:hover{
+    color:var(--accent);
+}
+
+.auth-buttons{
+    display:flex;
+    align-items:center;
+    gap:14px;
+}
+
+.auth-buttons a{
+    text-decoration:none;
+    padding:10px 22px;
+    border-radius:999px;
+    font-size:14px;
+    font-weight:600;
+}
+
+.login{
+    color:var(--accent);
+    border:1px solid var(--accent);
+}
+
+.signup{
+    background:var(--accent);
+    color:#000;
+}
+
+/* ================= DASHBOARD ================= */
+.container{
+    width:90%;
+    margin:5rem auto;
+}
+
+/* ================= HEADER ================= */
+.header{
+    background:linear-gradient(135deg,#24cfa6,#1ea38a);
+    color:#000;
+    padding:32px;
+    border-radius:18px;
+}
+
+.header h1{
+    font-size:2.2rem;
+    font-weight:500;
+}
+
+.header p{
+    margin-top:6px;
+    font-size:14px;
+    opacity:.9;
+}
+
+/* ================= CARD ================= */
+.card{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:18px;
+    padding:28px;
+    margin-top:2rem;
+}
+
+.card h2{
+    font-size:1.4rem;
+    font-weight:400;
+    margin-bottom:12px;
+}
+
+.card p{
+    font-size:14px;
+    color:var(--muted);
+    line-height:1.6;
+}
+
+/* ================= BUTTON ================= */
+.btn{
+    display:inline-block;
+    margin-top:14px;
+    padding:12px 28px;
+    background:var(--accent);
+    color:#000;
+    text-decoration:none;
+    border-radius:999px;
+    font-weight:600;
+    font-size:14px;
+}
+
+/* ================= GRID ================= */
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+}
+
+/* ================= RESPONSIVE ================= */
+@media(max-width:768px){
+    .navbar{
+        padding:0 1.5rem;
+    }
+    .header{
+        padding:24px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ================= NAV ================= -->
+<nav class="navbar">
+    <div class="logo">
+        <span>Sheryians</span>
+    </div>
+
+    <ul class="nav-links">
+        <li><a href="{% url 'home' %}">Home</a></li>
+        <li><a href="{% url 'course_list' %}">Courses</a></li>
+        <li><a href="{% url 'cart_page' %}">Cart</a></li>
+    </ul>
+
+    <div class="auth-buttons">
+        <span style="font-size:14px;">Hi, {{ request.user.username }}</span>
+        <a href="{% url 'signout' %}" class="login">Logout</a>
+    </div>
+</nav>
+
+<!-- ================= DASHBOARD ================= -->
+<div class="container">
+
+    <!-- HEADER -->
+    <div class="header">
+        <h1>Welcome, {{ request.user.username }} 👋</h1>
+        <p>{{ request.user.email }}</p>
+    </div>
+
+    <!-- ACCOUNT -->
+    <div class="card">
+        <h2>Your Account</h2>
+        <p><strong>Username:</strong> {{ request.user.username }}</p>
+        <p><strong>Email:</strong> {{ request.user.email }}</p>
+    </div>
+
+    <!-- COURSES -->
+    <div class="card">
+        <h2>Your Courses</h2>
+        <p>You have not enrolled in any courses yet.</p>
+        <a href="{% url 'course_list' %}" class="btn">Browse Courses</a>
+    </div>
+
+    <!-- QUICK ACTIONS -->
+    <div class="card">
+        <h2>Quick Actions</h2>
+        <div class="grid">
+            <a href="{% url 'course_list' %}" class="btn">All Courses</a>
+            <a href="{% url 'home' %}" class="btn">Home</a>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html> -->
